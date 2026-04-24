@@ -9,12 +9,12 @@ include_recipe 'common::chef_client'
   tcpdump
   fish
   vim
-  gnupg 
-  wget 
+  gnupg
+  wget
   lsb-release
   curl
   jq
-).each do | pkg |
+).each do |pkg|
   package pkg do
     action :install
   end

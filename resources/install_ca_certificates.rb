@@ -27,14 +27,13 @@ class CaCeritifcates < Chef::Resource
         ca_bundle: '/etc/ssl/cert.pem',
       }
     when 'ubuntu', 'debian', 'kali'
-    cfg =   {
+      cfg = {
         cmd: 'update-ca-certificates',
         dir: '/usr/local/share/ca-certificates',
         ca_bundle: '/etc/ssl/certs/ca-certificates.crt',
       }
-    package 'ca-certificates'
+      package 'ca-certificates'
     end
-
 
     remote_directory cfg[:dir] do
       source 'cacerts'
@@ -47,7 +46,6 @@ class CaCeritifcates < Chef::Resource
       action :create
       notifies :run, 'execute[update-ca-certificates]', :immediately
     end
-
 
     execute 'update-ca-certificates' do
       environment ({ 'PATH' => "#{ENV['PATH']}:/usr/sbin" })
