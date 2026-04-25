@@ -1,4 +1,4 @@
-include_recipe 'common::install_gems'
+include_recipe 'common::install_gems' unless node['roles'].include? "workstation"
 include_recipe 'common::install_cacerts'
 include_recipe 'common::systemd_resolved'
 include_recipe 'common::chef_client'
